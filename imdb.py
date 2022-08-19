@@ -10,7 +10,7 @@ title= input("Enter the name of the series\t")
 seasonno=None
 imdbid=None
 try:
-    jsonobj=requests.get("https://www.omdbapi.com/?apikey=29f7a43f&t="+title)
+    jsonobj=requests.get("https://www.omdbapi.com/?apikey=[apikey]&t="+title)
     imdbid=jsonobj.json()['imdbID']
     if imdbid!=None:
         print("Result of Type- "+jsonobj.json()['Type']+" found with Title- "+ jsonobj.json()['Title'])
