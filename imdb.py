@@ -10,16 +10,18 @@ title= input("Enter the name of the series\t")
 seasonno=None
 imdbid=None
 try:
-    jsonobj=requests.get("https://www.omdbapi.com/?apikey="+keys.apikey+"&t="+title)
+    jsonobj=requests.get("https://www.omdbapi.com/?apikey="+keys.apikey+"&t="+title) #enter omdb-api here instead of keys.apikey
     imdbid=jsonobj.json()['imdbID']
     if imdbid!=None:
         print("Result of Type- "+jsonobj.json()['Type']+" found with Title- "+ jsonobj.json()['Title'])
+        if(jsonobj.json()['Type']!="series"):
+            print("Entered title is not a series")
     while(1):
         seasonno=int(input("Enter the season number (1-"+jsonobj.json()['totalSeasons']+")\t"))
         if seasonno<=int(jsonobj.json()['totalSeasons']) and seasonno>0 or seasonno==-1:
             break
         else:
-            print("Season out of range, there are a maximum of "+jsonobj.json()['totalSeasons']+" in "+jsonobj.json()['Title'])
+            print("Season out of range, there are a maximum of "+jsonobj.json()['totalSeasons']+" seasons in "+jsonobj.json()['Title'])
 except:
     print("Not found")
 if imdbid!=None and seasonno!=None:
